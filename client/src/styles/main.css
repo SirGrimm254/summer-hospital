@@ -1036,6 +1036,27 @@ body {
         font-size: 1rem;
     }
 
+    .floating-bubble {
+        bottom: 1rem;
+        font-size: 0.8rem;
+    }
+
+    .help-bubble {
+        width: 55px;
+        height: 55px;
+    }
+    .help-bubble a {
+        font-size: 1.5rem;
+    }
+
+    .appointment-bubble {
+        width: 150px;
+        font-size: 0.85rem;
+        padding: 0.7rem 1rem;
+        padding-right: 40px;
+        left: 0;
+    }
+
     .footer {
         flex-direction: column;
         padding: 15px;
@@ -1238,6 +1259,27 @@ body {
 
     .info-task ul li {
         font-size: 0.9rem;
+    }
+
+    .floating-bubble {
+        bottom: 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .help-bubble {
+        width: 60px;
+        height: 60px;
+    }
+    .help-bubble a {
+        font-size: 1.7rem;
+    }
+
+    .appointment-bubble {
+        width: 170px;
+        font-size: 0.95rem;
+        padding: 0.9rem 1.2rem;
+        padding-right: 45px;
+        left: 0;
     }
 
 
