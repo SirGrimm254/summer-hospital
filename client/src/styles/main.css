@@ -1064,13 +1064,18 @@ body {
     gap: 20px;
   }
 
-  .first-div { grid-area: first-div; }
+  .first-div { 
+        grid-area: first-div; 
+        width: 100%;
+    }
 
     .service-category {
+        width: 100%;
       font-size: 1.04em;
     }
 
     .gallery {
+        width: 100%;
         grid-template-columns: 1fr;
         gap: 15px;
         padding: 15px;
@@ -1088,7 +1093,10 @@ body {
         font-size: 1rem;
     }
 
-    .second-div{ grid-area: second-div; }
+    .second-div{ 
+        grid-area: second-div; 
+        width: 100%;
+    }
 
     .section1 h2 {
         font-size: 1.3rem;
@@ -1100,6 +1108,10 @@ body {
 
     .section1 p {
         font-size: 0.9rem;
+    }
+
+    .services {
+        width: 100%;
     }
 
     .services h3 {
