@@ -962,6 +962,10 @@ body {
   overflow-x: hidden;
 }
 
+.service-category {
+    margin-left: 0;
+}
+
 .gallery-item img {
   max-width: 100%;
   height: auto; /* keeps proportions */
