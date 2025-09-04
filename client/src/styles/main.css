@@ -946,6 +946,42 @@ body {
     padding: 10px;
 }
 
+/* General fix for all screen sizes */
+.main-content,
+.first-div,
+.gallery,
+.second-div,
+.services,
+.info-task,
+.footer,
+.sub-foot1,
+.links {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box; /* ensures padding doesn’t push width past screen */
+  overflow-x: hidden;
+}
+
+.gallery-item img {
+  max-width: 100%;
+  height: auto; /* keeps proportions */
+  display: block;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap; /* makes sure items don’t overflow horizontally */
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.sub-foot1,
+.links {
+  flex: 1 1 100%; /* each takes full width on small screens */
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
 /* ===============================
    📱 Small Phones (max-width: 480px)
    =============================== */
