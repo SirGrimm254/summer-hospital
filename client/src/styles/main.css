@@ -1060,69 +1060,27 @@ body {
       "first-div"
       "gallery"
       "second-div";
-    gap: 20px;
+    gap: 15px;
   }
 
-  .first-div { grid-area: first-div; }
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
+  }
 
-    .service-category {
-      font-size: 1.04em;
-    }
+  .gallery-item img {
+    height: 160px;
+  }
 
-    .gallery {
-        grid-template-columns: 1fr;
-        gap: 15px;
-        padding: 15px;
-    }
+  .section1 h2 { font-size: 1.1rem; }
+  .section1 h3 { font-size: 0.9rem; }
+  .section1 p { font-size: 0.8rem; }
 
-    .gallery-item {
-        padding: 10px;
-    }
-
-    .gallery-item img {
-        height: 200px;
-    }
-
-    .gallery-desc {
-        font-size: 1rem;
-    }
-
-    .second-div{ grid-area: second-div; }
-
-    .section1 h2 {
-        font-size: 1.3rem;
-    }
-
-    .section1 h3 {
-        font-size: 1rem;
-    }
-
-    .section1 p {
-        font-size: 0.9rem;
-    }
-
-    .services h3 {
-        font-size: 1.2rem;
-    }
-
-    .services ul li::before {
-        content: "•"; /* simpler bullet for small screens */
-        font-size: 1rem;
-    }
-
-    .info-task {
-        padding: 15px;
-        border-radius: 10px;
-        background-color: cornflowerblue;
-    }
-
-    .info-task h2 {
-        font-size: 1.3rem;
-    }
-
-    .info-task ul li {
-        font-size: 0.9rem;
-    }
+  .gallery-desc,
+  .info-task ul li {
+    font-size: 0.85rem;
+  }
 
   .footer {
     flex-direction: column;
