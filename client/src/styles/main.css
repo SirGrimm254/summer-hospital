@@ -1083,13 +1083,13 @@ body {
 
   .services { width: 100%; }
   .services h3 { font-size: 1.2rem; }
-  .services ul {
+  .service-category ul {
     padding-left: 0;
     margin-left: 0;
     list-style-position: inside;
     box-sizing: border-box;
   }
-  .services ul li::before {
+  .services-category ul li::before {
     content: "•";
     font-size: 1rem;
   }
@@ -1186,13 +1186,13 @@ body {
 
   .services { width: 100%; }
   .services h3 { font-size: 1.2rem; }
-  .services ul {
+  .services-category ul {
     padding-left: 0;
     margin-left: 0;
     list-style-position: inside;
     box-sizing: border-box;
   }
-  .services ul li::before { content: "•"; font-size: 1rem; }
+  .services-category ul li::before { content: "•"; font-size: 1rem; }
 
   .info-task { padding: 15px; border-radius: 10px; background-color: cornflowerblue; width: 100%; }
   .info-task h2 { font-size: 1.3rem; }
@@ -1269,7 +1269,7 @@ body {
 
   .services { width: 100%; }
   .services h3 { font-size: 1.3rem; }
-  .services ul li::before { font-size: 1.1rem; }
+  .services-category ul li::before { font-size: 1.1rem; }
 
   .info-task {
     padding: 20px;
