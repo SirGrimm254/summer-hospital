@@ -1060,54 +1060,90 @@ body {
       "first-div"
       "gallery"
       "second-div";
-    gap: 15px;
+    gap: 20px;
   }
 
   .first-div { grid-area: first-div; }
 
-  .service-category {
-    font-size: 1em;
-  }
+    .service-category {
+      font-size: 1.04em;
+    }
 
-  .gallery {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    padding: 10px;
-  }
+    .gallery {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 15px;
+    }
 
-  .gallery-item {
-    padding: 8px;
-  }
+    .gallery-item {
+        padding: 10px;
+    }
 
-  .gallery-item img {
-    height: 160px;
-  }
+    .gallery-item img {
+        height: 200px;
+    }
 
-  .gallery-desc {
-    font-size: 0.9rem;
-  }
+    .gallery-desc {
+        font-size: 1rem;
+    }
 
-  .second-div { grid-area: second-div; }
+    .second-div{ grid-area: second-div; }
 
-  .section1 h2 { font-size: 1.1rem; }
-  .section1 h3 { font-size: 0.9rem; }
-  .section1 p { font-size: 0.8rem; }
+    .section1 h2 {
+        font-size: 1.3rem;
+    }
 
-  .services h3 { font-size: 1rem; }
+    .section1 h3 {
+        font-size: 1rem;
+    }
 
-  .services ul li::before {
-    content: "•";
-    font-size: 0.9rem;
-  }
+    .section1 p {
+        font-size: 0.9rem;
+    }
 
-  .info-task {
-    padding: 12px;
-    border-radius: 8px;
-    background-color: cornflowerblue;
-  }
+    .services h3 {
+        font-size: 1.2rem;
+    }
 
-  .info-task h2 { font-size: 1.1rem; }
-  .info-task ul li { font-size: 0.8rem; }
+    .services ul li::before {
+        content: "•"; /* simpler bullet for small screens */
+        font-size: 1rem;
+    }
+
+    .info-task {
+        padding: 15px;
+        border-radius: 10px;
+        background-color: cornflowerblue;
+    }
+
+    .info-task h2 {
+        font-size: 1.3rem;
+    }
+
+    .info-task ul li {
+        font-size: 0.9rem;
+    }
+    
+    .floating-bubble {
+        bottom: 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .help-bubble {
+        width: 60px;
+        height: 60px;
+    }
+    .help-bubble a {
+        font-size: 1.7rem;
+    }
+
+    .appointment-bubble {
+        width: 170px;
+        font-size: 0.95rem;
+        padding: 0.9rem 1.2rem;
+        padding-right: 45px;
+        left: 0;
+    }
 
   .footer {
     flex-direction: column;
@@ -1298,6 +1334,27 @@ body {
 
     .info-task ul li {
         font-size: 0.9rem;
+    }
+
+    .floating-bubble {
+        bottom: 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .help-bubble {
+        width: 60px;
+        height: 60px;
+    }
+    .help-bubble a {
+        font-size: 1.7rem;
+    }
+
+    .appointment-bubble {
+        width: 170px;
+        font-size: 0.95rem;
+        padding: 0.9rem 1.2rem;
+        padding-right: 45px;
+        left: 0;
     }
 
   .footer {
