@@ -1063,24 +1063,51 @@ body {
     gap: 15px;
   }
 
+  .first-div { grid-area: first-div; }
+
+  .service-category {
+    font-size: 1em;
+  }
+
   .gallery {
     grid-template-columns: 1fr;
     gap: 10px;
     padding: 10px;
   }
 
+  .gallery-item {
+    padding: 8px;
+  }
+
   .gallery-item img {
     height: 160px;
   }
+
+  .gallery-desc {
+    font-size: 0.9rem;
+  }
+
+  .second-div { grid-area: second-div; }
 
   .section1 h2 { font-size: 1.1rem; }
   .section1 h3 { font-size: 0.9rem; }
   .section1 p { font-size: 0.8rem; }
 
-  .gallery-desc,
-  .info-task ul li {
-    font-size: 0.85rem;
+  .services h3 { font-size: 1rem; }
+
+  .services ul li::before {
+    content: "•";
+    font-size: 0.9rem;
   }
+
+  .info-task {
+    padding: 12px;
+    border-radius: 8px;
+    background-color: cornflowerblue;
+  }
+
+  .info-task h2 { font-size: 1.1rem; }
+  .info-task ul li { font-size: 0.8rem; }
 
   .footer {
     flex-direction: column;
