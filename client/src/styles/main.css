@@ -444,7 +444,7 @@ a:hover {
 
 .aboutus {
   grid-area: gallery;
-  background-color: var(--primary-color);
+  background: linear-gradient(135deg, #528fc9, #f4f4f4);
   color: var(--light-text-color);
   padding: 2rem;
   border-radius: 10px;
