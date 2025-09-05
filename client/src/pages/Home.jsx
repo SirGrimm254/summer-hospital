@@ -429,7 +429,7 @@ function Home() {
         <div className="custom-alert-overlay">
           <div className="custom-alert-box">
             <p className="alert-title">Contact Us On</p>
-            <p className="alert-phone">0722 491 930</p>
+            <p className="alert-phone">0722 491 930 <br /> or <br />0745 295 680</p>
             <button onClick={closeAlert} className="alert-close">
               Close
             </button>
