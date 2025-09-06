@@ -452,7 +452,7 @@ a:hover {
 }
 
 .aboutus h1 {
-  color: var(--light-text-color);
+  color: var(--shadow-color);
   margin-bottom: 1rem;
 }
 
