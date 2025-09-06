@@ -443,7 +443,7 @@ a:hover {
 
 .aboutus {
   grid-area: gallery;
-  background: linear-gradient(135deg, #aa111e, #f4f4f4);
+  background: linear-gradient(135deg, #f4f4f4, #aa111e);
   color: var(--light-text-color);
   padding: 2rem;
   border-radius: 10px;
