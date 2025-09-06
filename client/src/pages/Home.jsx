@@ -278,7 +278,7 @@ function Home() {
             </div>
             <p
               style={{
-                color: "rgba(0, 0, 0, 0.1)",
+                color: "black",
                 fontSize: "1.6em",
                 marginBottom: "30px",
                 padding: "20px",
