@@ -1,16 +1,21 @@
-
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Router, Routes, Route, Link } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
+import Services from "./pages/Services";
+import About from "./pages/About";
 import "./styles/main.css";
 
 function App() {
   return (
     <Router>
       <div className="app-wrapper">
+        <ScrollToTop />
         {/* Main content */}
         <div className="content">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/about" element={<About />} /> 
           </Routes>
         </div>
 

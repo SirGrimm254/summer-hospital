@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
+  const [showNavBar, setShowNavBar] = useState(true);
 
   const [banners, setBanners] = useState([]);
   const [gallery, setGallery] = useState([]);
@@ -11,6 +13,53 @@ function Home() {
   const timerRef = useRef(null);
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      const isMobile = window.innerWidth <= 768;
+
+      if (currentScrollY > lastScrollY) {
+        // SCROLLING DOWN
+
+        setShowHeader(false);
+
+        if (!isMobile) {
+          setShowNavBar(true);
+        } else {
+          setShowNavBar(false);
+        }
+
+      } else {
+        // SCROLLING UP
+
+        if (!isMobile) {
+          setShowHeader(true);
+          setShowNavBar(false);
+        } else {
+          setShowHeader(false);
+          setShowNavBar(true);
+        }
+      }
+
+      // TOP OF PAGE
+      if (currentScrollY <= 10) {
+        setShowHeader(true);
+        setShowNavBar(true);
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   // Load banners from /public/images/banners
   useEffect(() => {
@@ -72,7 +121,7 @@ function Home() {
   return (
     <div className="page">
       {/* Header */}
-      <div className="header">
+      <div className={`header ${showHeader ? "show-header" : "hide-header"}`}>
         <div className="logo">
           <img src="/images/logo.jpg" alt="logos" />
           <h1>Summer Medical Center</h1>
@@ -80,9 +129,9 @@ function Home() {
         <nav className="page-nav">
           <ul>
             <li><Link to="/"><i className="fas fa-home"></i> Home</Link></li>
-            <li><a href="#services"><i className="fas fa-stethoscope"></i> Services</a></li>
-            <li><a href="#aboutus"><i className="fa-solid fa-users"></i> About Us</a></li>
-            <li><a onClick={handleBookAppointment}><i className="fas fa-envelope"></i> Contact</a></li>
+            <li><Link to="/services"><i className="fas fa-stethoscope"></i> Services</Link></li>
+            <li><Link to="/about"><i className="fa-solid fa-users"></i> About Us</Link></li>
+            <li><a href="#contact" onClick={handleBookAppointment}><i className="fas fa-envelope"></i> Contact</a></li>
           </ul>
         </nav>
       </div>
@@ -94,15 +143,20 @@ function Home() {
         </button>
         <h2 style={{ marginBottom: "50px" }}>Welcome To Summer Medical Center</h2>
         <ul>
-          <li><Link to="/"><i className="fas fa-home"></i> Home</Link></li>
-          <li><a href="#services"><i className="fas fa-stethoscope"></i> Services</a></li>
-          <li><a href="#aboutus"><i className="fas fa-users"></i> About Us</a></li>
-          <li><a href="#location"><i className="fas fa-map-marker-alt"></i> Location</a></li>
+          <li><Link to="/" onClick={toggleSidebar}><i className="fas fa-home"></i> Home</Link></li>
+          <li><Link to="/services" onClick={toggleSidebar}><i className="fas fa-stethoscope"></i> Services</Link></li>
+          <li><Link to="/about" onClick={toggleSidebar}><i className="fas fa-users"></i> About Us</Link></li>
+          <li><a href="#location" onClick={toggleSidebar}><i className="fas fa-map-marker-alt"></i> Location</a></li>
         </ul>
       </div>
 
       {/* Top Nav Bar */}
-      <div className="navBar">
+      <div
+        className={`navBar 
+          ${showNavBar ? "show-nav" : "hide-nav"}
+          ${showHeader ? "nav-with-header" : "nav-no-header"}
+        `}
+      >
         <div className="searchBar">
           <input
             type="text"
@@ -114,7 +168,14 @@ function Home() {
         <div className="headlogo">
           <h2 style={{ color: "white" }}>Welcome Guest</h2>
         </div>
-        <div className="hamburger" onClick={toggleSidebar}>
+        <div
+          className="hamburger"
+          onClick={() => {
+            toggleSidebar();
+            setShowNavBar(false);
+            setShowHeader(false);
+          }}
+        >
           <i className="fas fa-bars"></i>
         </div>
       </div>
@@ -179,94 +240,134 @@ function Home() {
         </div>
 
         <div className="main-content">
-          <div className="first-div">
-            <section className="section1">
-              <h2>Trusted Healthcare Provider</h2>
-              <h3>COMPREHENSIVE HOME-BASED MEDICAL CARE</h3>
-              <p>
-                Modern healthcare institution dedicated to delivering compassionate,
-                comprehensive, and affordable medical services to the community.
-                Guided by a vision of holistic wellness, the hospital combines advanced
-                technology with a patient-centered approach, ensuring every individual
-                receives personalized attention.
-              </p>
-              <img src="/images/doctors.jpg" alt="doctors" />
-              <h2>We Are Here For You</h2>
-              <p>
-                From primary care and emergency services to specialized treatment in
-                pediatrics, internal medicine, and expert diagnosis, Summer Medical
-                Center serves as a trusted partner in health. With a team of skilled
-                doctors, nurses, and support staff, the center strives to create a
-                welcoming environment where healing, innovation, and care come together.
-              </p>
-              <img src="/images/hereforyou.jpg" alt="here for you" />
-            </section>
+          <div className="content-wrapper">
+            <div className="first-div">
+              <section className="section1">
+                <h2>Trusted Healthcare Provider</h2>
+                <h3>COMPREHENSIVE HOME-BASED MEDICAL CARE</h3>
+                <p>
+                  Modern healthcare institution dedicated to delivering compassionate,
+                  comprehensive, and affordable medical services to the community.
+                  Guided by a vision of holistic wellness, the hospital combines advanced
+                  technology with a patient-centered approach, ensuring every individual
+                  receives personalized attention.
+                </p>
+                <img src="/images/doctors.jpg" alt="doctors" />
+                <h2>We Are Here For You</h2>
+                <p>
+                  From primary care and emergency services to specialized treatment in
+                  pediatrics, internal medicine, and expert diagnosis, Summer Medical
+                  Center serves as a trusted partner in health. With a team of skilled
+                  doctors, nurses, and support staff, the center strives to create a
+                  welcoming environment where healing, innovation, and care come together.
+                </p>
+                <img src="/images/hereforyou.jpg" alt="here for you" />
+              </section>
 
-            <section className="services" id="services">
-              <h3>We Offer a Variety of Medical Services</h3>
-              <img src="/images/doctoon.png" alt="Doctor illustration" className="services-img" />
+              <section className="services" id="services">
+                <h3>We Offer a Variety of Medical Services</h3>
+                <img src="/images/doctoon.png" alt="Doctor illustration" className="services-img" />
 
-              <div className="services-grid">
-                {/* Laboratory Tests */}
-                <div className="service-category">
-                  <h4>Laboratory Tests</h4>
-                  <ul>
-                    <li><strong>Routine:</strong> Basic health screening tests.</li>
-                    <li><strong>Microbiology:</strong> Detection of bacterial, viral, and fungal infections.</li>
-                    <li><strong>Haematology:</strong> Blood-related tests including complete blood counts.</li>
-                    <li><strong>Biochemistry:</strong> Liver, kidney, and metabolic function tests.</li>
-                    <li><strong>Immunoassay:</strong> Hormone levels, infection markers, and immune system tests.</li>
-                  </ul>
+                <div className="services-grid">
+                  {/* Laboratory Tests */}
+                  <div className="service-category">
+                    <h4>Laboratory Tests</h4>
+                    <ul>
+                      <li><strong>Routine:</strong> Basic health screening tests.</li>
+                      <li><strong>Microbiology:</strong> Detection of bacterial, viral, and fungal infections.</li>
+                      <li><strong>Haematology:</strong> Blood-related tests including complete blood counts.</li>
+                      <li><strong>Biochemistry:</strong> Liver, kidney, and metabolic function tests.</li>
+                      <li><strong>Immunoassay:</strong> Hormone levels, infection markers, and immune system tests.</li>
+                    </ul>
+                  </div>
+
+                  {/* X-Ray Services */}
+                  <div className="service-category">
+                    <h4>X-Ray Services</h4>
+                    <ul>
+                      <li><strong>General Body Part X-rays:</strong> Imaging for bones and soft tissues.</li>
+                      <li><strong>H.S.G:</strong> Specialized X-ray for reproductive health.</li>
+                      <li><strong>Barium Meal:</strong> Gastrointestinal tract imaging.</li>
+                      <li><strong>Shielded X-ray:</strong> Radiation-safe imaging for sensitive areas.</li>
+                      <li><strong>Dental X-ray:</strong> Imaging for teeth and jaw assessment.</li>
+                    </ul>
+                  </div>
+
+                  {/* Ultrasound Scan Services */}
+                  <div className="service-category">
+                    <h4>Ultrasound Scan Services</h4>
+                    <ul>
+                      <li><strong>General Scan:</strong> Routine ultrasound for overall health.</li>
+                      <li><strong>Obstetric Scan:</strong> Monitoring pregnancy and fetal development.</li>
+                      <li><strong>TVS:</strong> Transvaginal scans for reproductive health.</li>
+                      <li><strong>Regional Scan:</strong> Imaging of specific body regions.</li>
+                      <li><strong>Organ Scan:</strong> Detailed scan of individual organs.</li>
+                      <li><strong>Biopsy Guidance:</strong> Ultrasound-assisted tissue sampling.</li>
+                      <li><strong>Colour Doppler:</strong> Blood flow assessment.</li>
+                      <li><strong>E.C.G:</strong> Heart electrical activity recording.</li>
+                      <li><strong>Echo:</strong> Ultrasound of the heart (echocardiogram).</li>
+                      <li><strong>Plastering:</strong> Orthopedic plaster and immobilization services.</li>
+                    </ul>
+                  </div>
+
+                  {/* Medical Clinic Services */}
+                  <div className="service-category">
+                    <h4>Medical Clinic Services</h4>
+                    <ul>
+                      <li><strong>Out Patient:</strong> General consultations and treatment.</li>
+                      <li><strong>Examination, Diagnosis, Treatment:</strong> Comprehensive patient care.</li>
+                      <li><strong>General & Minor Surgery:</strong> Safe surgical procedures for common conditions.</li>
+                      <li><strong>Chronic Disease Management:</strong> Long-term care and follow-up for conditions like diabetes and hypertension.</li>
+                      <li><strong>Counselling:</strong> Support for mental, emotional, and lifestyle issues.</li>
+                      <li><strong>Nutrition & Dietetics:</strong> Dietary guidance for healthy living.</li>
+                      <li><strong>Obstetrics & Gynecology:</strong> Women’s health, fertility, and maternal care.</li>
+                      <li><strong>Youth Friendly Services:</strong> Care tailored for young people.</li>
+                      <li><strong>Mother & Child Clinic:</strong> Comprehensive care for mothers and children.</li>
+                      <li><strong>ANC (Antenatal Care):</strong> Regular checkups for pregnant mothers.</li>
+                      <li><strong>Pain Management:</strong> Treatment and control of acute or chronic pain.</li>
+                    </ul>
+                  </div>
                 </div>
+              </section>
+            </div>
 
-                {/* X-Ray Services */}
-                <div className="service-category">
-                  <h4>X-Ray Services</h4>
-                  <ul>
-                    <li><strong>General Body Part X-rays:</strong> Imaging for bones and soft tissues.</li>
-                    <li><strong>H.S.G:</strong> Specialized X-ray for reproductive health.</li>
-                    <li><strong>Barium Meal:</strong> Gastrointestinal tract imaging.</li>
-                    <li><strong>Shielded X-ray:</strong> Radiation-safe imaging for sensitive areas.</li>
-                    <li><strong>Dental X-ray:</strong> Imaging for teeth and jaw assessment.</li>
-                  </ul>
-                </div>
-
-                {/* Ultrasound Scan Services */}
-                <div className="service-category">
-                  <h4>Ultrasound Scan Services</h4>
-                  <ul>
-                    <li><strong>General Scan:</strong> Routine ultrasound for overall health.</li>
-                    <li><strong>Obstetric Scan:</strong> Monitoring pregnancy and fetal development.</li>
-                    <li><strong>TVS:</strong> Transvaginal scans for reproductive health.</li>
-                    <li><strong>Regional Scan:</strong> Imaging of specific body regions.</li>
-                    <li><strong>Organ Scan:</strong> Detailed scan of individual organs.</li>
-                    <li><strong>Biopsy Guidance:</strong> Ultrasound-assisted tissue sampling.</li>
-                    <li><strong>Colour Doppler:</strong> Blood flow assessment.</li>
-                    <li><strong>E.C.G:</strong> Heart electrical activity recording.</li>
-                    <li><strong>Echo:</strong> Ultrasound of the heart (echocardiogram).</li>
-                    <li><strong>Plastering:</strong> Orthopedic plaster and immobilization services.</li>
-                  </ul>
-                </div>
-
-                {/* Medical Clinic Services */}
-                <div className="service-category">
-                  <h4>Medical Clinic Services</h4>
-                  <ul>
-                    <li><strong>Out Patient:</strong> General consultations and treatment.</li>
-                    <li><strong>Examination, Diagnosis, Treatment:</strong> Comprehensive patient care.</li>
-                    <li><strong>General & Minor Surgery:</strong> Safe surgical procedures for common conditions.</li>
-                    <li><strong>Chronic Disease Management:</strong> Long-term care and follow-up for conditions like diabetes and hypertension.</li>
-                    <li><strong>Counselling:</strong> Support for mental, emotional, and lifestyle issues.</li>
-                    <li><strong>Nutrition & Dietetics:</strong> Dietary guidance for healthy living.</li>
-                    <li><strong>Obstetrics & Gynecology:</strong> Women’s health, fertility, and maternal care.</li>
-                    <li><strong>Youth Friendly Services:</strong> Care tailored for young people.</li>
-                    <li><strong>Mother & Child Clinic:</strong> Comprehensive care for mothers and children.</li>
-                    <li><strong>ANC (Antenatal Care):</strong> Regular checkups for pregnant mothers.</li>
-                    <li><strong>Pain Management:</strong> Treatment and control of acute or chronic pain.</li>
-                  </ul>
-                </div>
+            <div className="second-div">
+              <div className="info-task">
+                <h2>Our Services</h2>
+                <a href="#location" style={{ textDecoration: "none" }}><p style={{ color: "white", fontSize: "1.3em" }}>Located in Ruiru</p></a>
+                <p
+                  style={{
+                    marginTop: "20px",
+                    fontSize: "1.3em",
+                    marginBottom: "10px",
+                  }}
+                >
+                  <b>Clinic Open Hours</b>
+                </p>
+                <ul>
+                  <li style={{ marginLeft: "20px" }}><i className="fas fa-clock" style={{ marginRight: "10px" }}></i> Open 24 Hours</li>
+                </ul>
+                <p
+                  style={{
+                    marginTop: "20px",
+                    fontSize: "1.3em",
+                    marginBottom: "10px",
+                  }}
+                >
+                  <b>Services</b>
+                </p>
+                <ul>
+                  <li>Consultations</li>
+                  <li>Pediatrics</li>
+                  <li>Obstetrics & Gynecology</li>
+                  <li>Dental Services</li>
+                  <li>Dermatology</li>
+                  <li>ENT (Ear, Nose, Throat)</li>
+                  <li>Laboratory & Diagnostics</li>
+                  <li>Pharmacy Services</li>
+                </ul>
               </div>
-            </section>
+            </div>
           </div>
 
           <div className="aboutus" id="aboutus">
@@ -305,54 +406,6 @@ function Home() {
               )}
             </section>
           </div>
-
-          <div className="second-div">
-            <div className="info-task">
-              <h2>Our Services</h2>
-              <a href="#location" style={{ textDecoration: "none" }}><p style={{ color: "white", fontSize: "1.3em" }}>Located in Ruiru</p></a>
-              <p
-                style={{
-                  marginTop: "20px",
-                  fontSize: "1.3em",
-                  marginBottom: "10px",
-                }}
-              >
-                <b>Clinic Open Hours</b>
-              </p>
-              <ul>
-                <li style={{ marginLeft: "20px" }}><i className="fas fa-clock" style={{ marginRight: "10px" }}></i> Open 24 Hours</li>
-              </ul>
-              <p
-                style={{
-                  marginTop: "20px",
-                  fontSize: "1.3em",
-                  marginBottom: "10px",
-                }}
-              >
-                <b>Services</b>
-              </p>
-              <ul>
-                <li>Consultations</li>
-                <li>Pediatrics</li>
-                <li>Obstetrics & Gynecology</li>
-                <li>Dental Services</li>
-                <li>Dermatology</li>
-                <li>ENT (Ear, Nose, Throat)</li>
-                <li>Laboratory & Diagnostics</li>
-                <li>Pharmacy Services</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div className="map-container" id="location">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!3m2!1sen!2ske!4v1756502805350!5m2!1sen!2ske!6m8!1m7!1szrCLQ7l8GJQ7MGB2bXOs6g!2m2!1d-1.14653808299398!2d36.95801614763142!3f254.76088334796765!4f0.22908690545432364!5f0.7820865974627469"
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Summer Medical Center Location"
-          ></iframe>
         </div>
       </div>
 
