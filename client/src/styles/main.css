@@ -57,6 +57,16 @@ html {
   scroll-padding-top: 110px;
 }
 
+.banner-carousel,
+.main-content,
+.map-container,
+.footer,
+.contact-info,
+.body-page {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
   background: var(--c-canvas);
