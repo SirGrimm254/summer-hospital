@@ -1419,9 +1419,6 @@ a:hover { color: var(--c-primary-deep); }
   .navBar {
     width: 100%;
   }
-  .hamburger {
-    margin-right: 50px;
-  } 
   .services-hero {
     min-height: 40vh;
     background-attachment: scroll;
@@ -1481,7 +1478,6 @@ a:hover { color: var(--c-primary-deep); }
     right: 1rem;
     padding: 0.7rem 1.1rem;
     font-size: 0.9rem;
-    margin-right: 60px;
   }
 }
 
