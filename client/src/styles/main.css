@@ -64,6 +64,7 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  width: 100%
 }
 
 /* Ambient backdrop */
@@ -390,6 +391,7 @@ a:hover { color: var(--c-primary-deep); }
   background: var(--g-night);
   color: var(--c-paper);
   font-size: 0.9rem;
+  width: 100%;
 }
 
 .contact-info .emailContact {
@@ -957,6 +959,7 @@ a:hover { color: var(--c-primary-deep); }
 /* ===== Floating Bubbles ===== */
 .floating-bubble {
   position: fixed;
+  bottom: 0;
   right: 1.5rem;
   z-index: 999;
   display: inline-flex;
@@ -1468,7 +1471,7 @@ a:hover { color: var(--c-primary-deep); }
     right: 1rem;
     padding: 0.7rem 1.1rem;
     font-size: 0.9rem;
-    margin-right: 50px;
+    margin-right: 60px;
   }
 }
 
