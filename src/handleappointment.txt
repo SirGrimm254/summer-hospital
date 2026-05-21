@@ -1,0 +1,64 @@
+const handleBookAppointment = () => {
+        if (!user) {
+            alert("Please log in or register to book an appointment.");
+            navigate("/login");
+        } else {
+            navigate("/appointment");
+        }
+    };
+
+<div className="profile">
+                    {user ? (
+                        <>
+                            <button
+                                style={{
+                                    fontSize: "1.3em",
+                                    background: "transparent",
+                                    color: "white",
+                                    border: "none",
+                                    boxShadow: "none",
+                                    width: "250px",
+                                    cursor: "pointer"
+                                }}
+                            >
+                                {user.role === "admin" ? "Admin" : user.name}
+                            </button>
+                            <button onClick={handleLogout}>
+                                <i className="fas fa-sign-out-alt"></i> Logout
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <Link to="/signup"><button><i className="fas fa-file"></i> Sign Up</button></Link>
+                            <Link to="/login"><button><i className="fas fa-user"></i> Log In</button></Link>
+                        </>
+                    )}
+                </div>
+
+<div className="btns">
+                    {user ? (
+                        <>
+                            <button
+                                style={{
+                                    fontSize: "1.3em",
+                                    background: "transparent",
+                                    color: "white",
+                                    border: "none",
+                                    boxShadow: "none",
+                                    marginRight: "30px",
+                                    cursor: "pointer"
+                                }}
+                            >
+                                {user.role === "admin" ? "Admin" : user.name}
+                            </button>
+                            <button onClick={handleLogout}>
+                                <i className="fas fa-sign-out-alt"></i> Logout
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <Link to="/signup"><button><i className="fas fa-file"></i> Sign Up</button></Link>
+                            <Link to="/login"><button><i className="fas fa-user"></i> Log In</button></Link>
+                        </>
+                    )}
+                </div>
