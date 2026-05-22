@@ -217,7 +217,11 @@ function Services() {
 
       {/* Sidebar */}
       <div className={`sidebar ${sidebarOpen ? "open" : ""}`}>
-        <button className="close-btn" onClick={toggleSidebar}>
+        <button className="close-btn" onClick={() => {
+          toggleSidebar();
+          setShowNavBar(true);
+          setShowHeader(true);
+        }}>
           <i className="fas fa-times"></i>
         </button>
 
