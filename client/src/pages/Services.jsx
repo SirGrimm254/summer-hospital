@@ -248,10 +248,13 @@ function Services() {
             </Link>
           </li>
 
-          <li>
-            <a href="#location" onClick={toggleSidebar}>
-              <i className="fas fa-map-marker-alt"></i> Location
-            </a>
+          <li><a onClick={() => {
+            toggleSidebar();
+            handleBookAppointment();
+            setShowNavBar(true);
+            setShowHeader(true);
+          }}>
+            <i className="fas fa-phone"></i> Contact Us</a>
           </li>
         </ul>
         <p style={{ position: "fixed", bottom: "10px", width: "250px", textAlign: "center" }}>&copy; 2023 Summer Medical Center. All rights reserved.</p>

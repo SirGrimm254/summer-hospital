@@ -147,10 +147,13 @@ function About() {
             </a>
           </li>
 
-          <li>
-            <a href="#location" onClick={toggleSidebar}>
-              <i className="fas fa-map-marker-alt"></i> Location
-            </a>
+          <li><a onClick={() => {
+            toggleSidebar();
+            handleBookAppointment();
+            setShowNavBar(true);
+            setShowHeader(true);
+          }}>
+            <i className="fas fa-phone"></i> Contact Us</a>
           </li>
         </ul>
         <p style={{ position: "fixed", bottom: "10px", width: "250px", textAlign: "center" }}>&copy; 2023 Summer Medical Center. All rights reserved.</p>
@@ -241,6 +244,41 @@ function About() {
       </div>
       
       <div className="main-content">
+        <div className="about-desc">
+          <h2>About Summer Medical Center</h2>
+
+          <p>
+            <strong>Summer Medical Center</strong> is a modern healthcare facility
+            dedicated to providing high-quality, affordable, and compassionate
+            medical services to individuals and families in Ruiru and the surrounding
+            communities. Our mission is to improve lives through professional healthcare,
+            advanced medical technology, and patient-centered treatment.
+          </p>
+
+          <p>
+            We offer a wide range of healthcare services including outpatient care,
+            laboratory diagnostics, ultrasound and imaging services, maternal and child
+            healthcare, chronic disease management, emergency care, and specialized
+            medical consultations. Every patient who walks through our doors receives
+            personalized attention from our highly trained and experienced medical team.
+          </p>
+
+          <p>
+            At Summer Medical Center, we believe that healthcare should be accessible,
+            reliable, and delivered with dignity and respect. Our facility is equipped
+            with modern medical equipment designed to support accurate diagnosis,
+            effective treatment, and faster recovery for our patients.
+          </p>
+
+          <p>
+            Guided by professionalism, integrity, compassion, and excellence, we continue
+            to build trust within the community by delivering healthcare solutions that
+            prioritize patient safety, comfort, and long-term wellness. Whether you need
+            routine check-ups, emergency support, specialist consultation, or preventive
+            healthcare services, Summer Medical Center is committed to being your trusted
+            healthcare partner every step of the way.
+          </p>
+        </div>
         <div className="aboutus" id="aboutus">
           <h1>Why You Should Choose Us</h1>
           <div className="medal-icons">
