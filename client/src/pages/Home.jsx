@@ -11,6 +11,15 @@ function Home() {
   const [gallery, setGallery] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const timerRef = useRef(null);
+  const [counts, setCounts] = useState({
+    patients: 0,
+    experience: 0,
+    doctors: 0,
+    support: 0,
+  });
+
+  const statsRef = useRef(null);
+  const [startCount, setStartCount] = useState(false);
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
@@ -95,6 +104,72 @@ function Home() {
       { src: "/images/gallery/gallery8.jpg", desc: "Our modern laboratory is fully equipped for accurat diagnostic testing, including blood analysis, imaging and health screening to support timely medical care." },
     ]);
   }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStartCount(true);
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    if (statsRef.current) {
+      observer.observe(statsRef.current);
+    }
+
+    return () => {
+      if (statsRef.current) observer.unobserve(statsRef.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!startCount) return;
+
+    const targets = {
+      patients: 12000,
+      experience: 15,
+      doctors: 25,
+      support: 24,
+    };
+
+    const duration = 2500;
+    const interval = 30;
+
+    const steps = duration / interval;
+
+    let currentStep = 0;
+
+    const counter = setInterval(() => {
+      currentStep++;
+
+      setCounts({
+        patients: Math.min(
+          Math.floor((targets.patients / steps) * currentStep),
+          targets.patients
+        ),
+        experience: Math.min(
+          Math.floor((targets.experience / steps) * currentStep),
+          targets.experience
+        ),
+        doctors: Math.min(
+          Math.floor((targets.doctors / steps) * currentStep),
+          targets.doctors
+        ),
+        support: Math.min(
+          Math.floor((targets.support / steps) * currentStep),
+          targets.support
+        ),
+      });
+
+      if (currentStep >= steps) {
+        clearInterval(counter);
+      }
+    }, interval);
+
+    return () => clearInterval(counter);
+  }, [startCount]);
 
   const restartTimer = () => {
     clearInterval(timerRef.current);
@@ -333,6 +408,9 @@ function Home() {
                     </ul>
                   </div>
                 </div>
+                <button className="service-btn" style={{ marginTop: "40px" }}>
+                  <Link to="/services">View More Services</Link>
+                </button>
               </section>
             </div>
 
@@ -375,40 +453,112 @@ function Home() {
             </div>
           </div>
 
-          <div className="aboutus" id="aboutus">
-            <h1>Why You Should Choose Us</h1>
-            <div className="medal-icons">
-              <i className="fas fa-certificate"></i>
-              <i className="fas fa-award"></i>
-              <i className="fas fa-shield-alt"></i>
+          <div className="about">
+            <div className="about-header">
+              <h1>Trusted Healthcare Excellence</h1>
+              <p>
+                Summer Medical Center continues to provide reliable, compassionate,
+                and modern healthcare services to families and individuals in Ruiru
+                and beyond.
+              </p>
             </div>
-            <p
-              style={{
-                color: "black",
-                fontSize: "1.6em",
-                marginBottom: "30px",
-                padding: "20px",
-              }}
-            >
-              At <strong>Summer Medical Center</strong>, we are committed to providing
-              exceptional healthcare services with a focus on patient safety, trust,
-              and compassion. Our team of qualified professionals is dedicated to
-              serving our community with modern facilities, personalized care,
-              and a strong commitment to your well-being.
-              Your health and satisfaction remain our top priority.
-            </p>
 
-            <section className="gallery">
-              {gallery.length > 0 ? (
-                gallery.map((item, idx) => (
-                  <div key={idx} className="gallery-item">
-                    <img src={item.src} alt={`Gallery ${idx + 1}`} />
-                    <p className="gallery-desc">{item.desc}</p>
-                  </div>
-                ))
-              ) : (
-                <p>No gallery images available.</p>
-              )}
+            {/* Statistics */}
+            <section className="stats-section" ref={statsRef}>
+              <div className="stat-card">
+                <i className="fas fa-user-injured"></i>
+                <h2>{counts.patients.toLocaleString()}+</h2>
+                <p>Happy Patients</p>
+              </div>
+
+              <div className="stat-card">
+                <i className="fas fa-briefcase-medical"></i>
+                <h2>{counts.experience}+</h2>
+                <p>Years Experience</p>
+              </div>
+
+              <div className="stat-card">
+                <i className="fas fa-user-doctor"></i>
+                <h2>{counts.doctors}+</h2>
+                <p>Medical Specialists</p>
+              </div>
+
+              <div className="stat-card">
+                <i className="fas fa-clock"></i>
+                <h2>{counts.support}/7</h2>
+                <p>Emergency Support</p>
+              </div>
+            </section>
+
+            {/* Why Choose Us */}
+            <section className="why-choose-us">
+              <div className="choose-card">
+                <i className="fas fa-heartbeat"></i>
+                <h3>Compassionate Care</h3>
+                <p>
+                  We prioritize patient comfort, safety, and personalized treatment
+                  for every individual.
+                </p>
+              </div>
+
+              <div className="choose-card">
+                <i className="fas fa-hospital"></i>
+                <h3>Modern Facilities</h3>
+                <p>
+                  Equipped with advanced diagnostic equipment and modern treatment
+                  technology.
+                </p>
+              </div>
+
+              <div className="choose-card">
+                <i className="fas fa-user-shield"></i>
+                <h3>Trusted Professionals</h3>
+                <p>
+                  Our experienced doctors and nurses deliver reliable healthcare
+                  services with professionalism.
+                </p>
+              </div>
+            </section>
+
+            {/* Accepted Payments */}
+            <section className="payments-section">
+              <h2>Accepted Payment Methods</h2>
+
+              <div className="payments-grid">
+                <div className="payment-card">
+                  <i className="fas fa-mobile-alt"></i>
+                  <p>M-PESA</p>
+                </div>
+
+                <div className="payment-card">
+                  <i className="fab fa-cc-visa"></i>
+                  <p>Visa</p>
+                </div>
+
+                <div className="payment-card">
+                  <i className="fab fa-cc-mastercard"></i>
+                  <p>MasterCard</p>
+                </div>
+
+                <div className="payment-card">
+                  <i className="fas fa-money-bill-wave"></i>
+                  <p>Cash Payments</p>
+                </div>
+              </div>
+            </section>
+
+            {/* Insurance / Partners */}
+            <section className="partners-section">
+              <h2>Insurance & Healthcare Partners</h2>
+
+              <div className="partners-grid">
+                <div className="partner-card">NHIF / SHA</div>
+                <div className="partner-card">Britam</div>
+                <div className="partner-card">Jubilee Insurance</div>
+                <div className="partner-card">AAR Healthcare</div>
+                <div className="partner-card">Madison Insurance</div>
+                <div className="partner-card">CIC Insurance</div>
+              </div>
             </section>
           </div>
         </div>

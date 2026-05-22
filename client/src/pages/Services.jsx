@@ -391,7 +391,7 @@ function Services() {
       </section>
 
       {/* Back Home */}
-      <div className="back-home">
+      <div className="service-btn" style={{ marginBottom: "50px", width: "200px", textAlign: "center", marginLeft: "20px" }}>
         <Link to="/" className="back-link">
           <i className="fas fa-arrow-left"></i> Back to Home
         </Link>
