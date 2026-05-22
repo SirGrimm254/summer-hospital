@@ -64,7 +64,6 @@ html {
 .contact-info,
 .body-page {
   max-width: 100%;
-  overflow-x: hidden;
 }
 
 body {
@@ -1494,7 +1493,6 @@ a:hover { color: var(--c-primary-deep); }
       "gallery";
     grid-template-columns: 1fr;
   }
-  .second-div { position: relative; top: auto; }
   .hamburger { display: block; }
 }
 

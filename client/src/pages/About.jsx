@@ -7,6 +7,7 @@ function About() {
   const [showHeader, setShowHeader] = useState(true);
   const [showNavBar, setShowNavBar] = useState(true);
   const [showAlert, setShowAlert] = useState(false);
+  const [gallery, setGallery] = useState([]);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -53,6 +54,19 @@ function About() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+  }, []);
+
+  useEffect(() => {
+    setGallery([
+      { src: "/images/gallery/gallery1.jpg", desc: "Front view of Summer Medical Centre." },
+      { src: "/images/gallery/gallery2.jpg", desc: "State of the art medical laboratory with advanced diagnostic equipments." },
+      { src: "/images/gallery/gallery3.jpg", desc: "Professional doctor checking patient's blood pressure for accurate diagnosis and care." },
+      { src: "/images/gallery/gallery4.jpg", desc: "Modern X-ray machine setup for accurate imaging and diagnostics." },
+      { src: "/images/gallery/gallery5.jpg", desc: "Advanced patient monitoring and life support ensuring accurate diagnosis and safe treatment." },
+      { src: "/images/gallery/gallery6.jpg", desc: "Ear, Nose and Throat check ups available" },
+      { src: "/images/gallery/gallery7.jpg", desc: "Comfortable hospital bed equipped with essential medical facilities to ensure patient safety and proper recovery." },
+      { src: "/images/gallery/gallery8.jpg", desc: "Our modern laboratory is fully equipped for accurat diagnostic testing, including blood analysis, imaging and health screening to support timely medical care." },
+    ]);
   }, []);
 
   const toggleSidebar = () => {
@@ -223,6 +237,45 @@ function About() {
               <i className="fab fa-telegram"></i>
             </Link>
           </div>
+        </div>
+      </div>
+      
+      <div className="main-content">
+        <div className="aboutus" id="aboutus">
+          <h1>Why You Should Choose Us</h1>
+          <div className="medal-icons">
+            <i className="fas fa-certificate"></i>
+            <i className="fas fa-award"></i>
+            <i className="fas fa-shield-alt"></i>
+          </div>
+          <p
+            style={{
+              color: "black",
+              fontSize: "1.6em",
+              marginBottom: "30px",
+              padding: "20px",
+            }}
+          >
+            At <strong>Summer Medical Center</strong>, we are committed to providing
+            exceptional healthcare services with a focus on patient safety, trust,
+            and compassion. Our team of qualified professionals is dedicated to
+            serving our community with modern facilities, personalized care,
+            and a strong commitment to your well-being.
+            Your health and satisfaction remain our top priority.
+          </p>
+
+          <section className="gallery">
+            {gallery.length > 0 ? (
+              gallery.map((item, idx) => (
+                <div key={idx} className="gallery-item">
+                  <img src={item.src} alt={`Gallery ${idx + 1}`} />
+                  <p className="gallery-desc">{item.desc}</p>
+                </div>
+              ))
+            ) : (
+              <p>No gallery images available.</p>
+            )}
+          </section>
         </div>
       </div>
 
