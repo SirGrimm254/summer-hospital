@@ -135,6 +135,7 @@ function About() {
             </a>
           </li>
         </ul>
+        <p style={{ position: "fixed", bottom: "10px", width: "250px", textAlign: "center" }}>&copy; 2023 Summer Medical Center. All rights reserved.</p>
       </div>
 
       {/* NavBar */}
