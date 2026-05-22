@@ -141,13 +141,14 @@ function Home() {
         <button className="close-btn" onClick={toggleSidebar}>
           <i className="fas fa-times"></i>
         </button>
-        <h2 style={{ marginBottom: "50px" }}>Welcome To Summer Medical Center</h2>
+        <h2>Welcome To Summer Medical Center</h2>
         <ul>
           <li><Link to="/" onClick={toggleSidebar}><i className="fas fa-home"></i> Home</Link></li>
           <li><Link to="/services" onClick={toggleSidebar}><i className="fas fa-stethoscope"></i> Services</Link></li>
           <li><Link to="/about" onClick={toggleSidebar}><i className="fas fa-users"></i> About Us</Link></li>
           <li><a href="#location" onClick={toggleSidebar}><i className="fas fa-map-marker-alt"></i> Location</a></li>
         </ul>
+        <p style={{ position: "fixed", bottom: "10px", width: "250px", textAlign: "center" }}>&copy; 2023 Summer Medical Center. All rights reserved.</p>
       </div>
 
       {/* Top Nav Bar */}

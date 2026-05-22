@@ -251,6 +251,8 @@ a:hover { color: var(--c-primary-deep); }
   color: var(--c-paper);
   text-align: center;
   font-size: 1.25rem;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .sidebar ul {
