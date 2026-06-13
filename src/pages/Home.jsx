@@ -1,7 +1,34 @@
-/*import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 function Home() {
+  const SITE_DISABLED = true;
+
+  if (SITE_DISABLED) {
+    return (
+      <div
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+          fontFamily: "sans-serif",
+          backgroundColor: "#0a0a0a",
+          color: "#fff",
+          padding: "20px",
+        }}
+      >
+        <h1 style={{ fontSize: "3em", marginBottom: "10px" }}>404</h1>
+        <h2 style={{ marginBottom: "20px" }}>Site Not Found</h2>
+        <p style={{ maxWidth: "500px", color: "#aaa" }}>
+          This site is currently unavailable. Please check back later.
+        </p>
+      </div>
+    );
+  }
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
@@ -493,4 +520,4 @@ function Home() {
   );
 }
 
-export default Home;*/
+export default Home;
