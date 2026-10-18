@@ -6,7 +6,7 @@ import About from "./pages/About";
 import "./styles/main.css";
 
 function App() {
-  const SITE_DISABLED = true;
+  const SITE_DISABLED = false;
 
   if (SITE_DISABLED) {
     return (
